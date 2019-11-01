@@ -1,31 +1,44 @@
 <mat-toolbar color="primary">
-        <span>Search Movies</span>
-</mat-toolbar>
-<mat-card>
-    <mat-card-content>
-            <form class="example-form" (ngSubmit)="onSearch()">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Search Movie" required [(ngModel)]="searchText" name="searchText">
-                    </mat-form-field>
-                
-                    <mat-slide-toggle [(ngModel)]="enableML" name="enableML">Enable ML Model</mat-slide-toggle>
-                    <br>
-                    <button mat-button color="primary">Search</button>
-                </form>
-    </mat-card-content>
-</mat-card>
-<mat-card>
-        <mat-accordion *ngIf="employees?.length>0">
-                <mat-expansion-panel *ngFor="let emp of employees">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                            {{emp.title}}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                            {{emp.release_date}}
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>{{emp.overview}}</p>
-                </mat-expansion-panel>
-        </mat-accordion>
-</mat-card>
+                <span>Search Movies</span>
+        </mat-toolbar>
+        <!-- <mat-grid-list cols="2" rowHeight="100px" gutterSize="10px">
+                        <mat-grid-tile colspan="2" rowspan="1">1</mat-grid-tile>
+                        <mat-grid-tile colspan="1" rowspan="1">2</mat-grid-tile>
+                        <mat-grid-tile colspan="1" rowspan="1">3</mat-grid-tile>
+        </mat-grid-list> -->
+        <mat-card>
+            <mat-card-content>
+                    <form class="example-form" (ngSubmit)="onSearch()">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Search Movie" required [(ngModel)]="searchText" name="searchText">
+                            </mat-form-field>
+                        
+                            <mat-slide-toggle [(ngModel)]="enableML" name="enableML">Enable ML Model</mat-slide-toggle>
+                            <br>
+                            <button mat-button color="primary">Search</button>
+                        </form>
+            </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="movies?.length>0">
+                <p>About {{ totalResults }} results ({{ processingTime }}) </p>
+        </mat-card>
+        <mat-card>
+                        <mat-list *ngIf="movies?.length>0">
+                                <mat-list-item *ngFor="let movie of movies; let i = index">
+                                        <img matListAvatar [src]="movie.poster_path" alt="{{movie.title}}">
+                                        <h3 matLine> {{movie.title}} </h3>
+                                        <p matLine>
+                                        <span> {{movie.release_date}} </span>
+                                        <span class="demo-2"> -- Rated {{movie.vote_average}} </span>
+                                        <span><button mat-button (click)="onShowMore(movie)">show more</button></span>
+                                        </p>
+                                </mat-list-item>
+                        </mat-list>
+        </mat-card>
+        <mat-card *ngIf="movies?.length>0">
+                        <h4 *ngIf="!showMore">No movie selected</h4>
+                        <div *ngIf="showMore">
+                                {{ movie.title }}
+                        </div>
+        </mat-card>
+        

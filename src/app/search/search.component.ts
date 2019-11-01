@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../employee.service';
-import { Employee } from '../employee';
-import { Observable } from 'rxjs';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-search',
@@ -14,21 +12,33 @@ export class SearchComponent implements OnInit {
 
   enableML = false;
 
-  employees: any[];
+  movies: any[];
 
-  constructor(private employeeService: EmployeeService) { }
+  totalResults: string;
+
+  processingTime: string;
+
+  showMore = false;
+
+  movie: any;
+
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {
   }
 
   onSearch() {
-
-
-    this.employeeService.getEmployeeByName(this.searchText, this.enableML)
+    this.movieService.getMovieByName(this.searchText, this.enableML)
     .subscribe((data: {})=>{
-      console.log(data['response']);
-      this.employees = data['response'];
+      this.totalResults = data['num_results'];
+      this.processingTime = data['processing_time'];
+      this.movies = data['response'];
     })  
+  }
+
+  onShowMore(selectedMovie: any) {
+    this.showMore = true;
+    this.movie = selectedMovie;
   }
 
 }

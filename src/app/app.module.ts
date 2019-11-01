@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
-import { EmployeeService } from './employee.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatAutocompleteModule,
@@ -43,13 +42,12 @@ import { MatAutocompleteModule,
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule  } from '@angular/material';
-import { MovieListComponent } from './search/movie-list/movie-list.component';
+import { MovieService } from './movie.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
-    MovieListComponent
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +90,7 @@ import { MovieListComponent } from './search/movie-list/movie-list.component';
   MatTreeModule,
   HttpClientModule 
   ],
-  providers: [EmployeeService],
+  providers: [MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
