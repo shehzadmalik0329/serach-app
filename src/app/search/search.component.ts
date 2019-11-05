@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
+import { Movie } from '../movie.model';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +13,7 @@ export class SearchComponent implements OnInit {
 
   enableML = false;
 
-  movies: any[];
+  movies: Movie[];
 
   totalResults: string;
 
@@ -20,7 +21,7 @@ export class SearchComponent implements OnInit {
 
   showMore = false;
 
-  movie: any;
+  movie: Movie;
 
   constructor(private movieService: MovieService) { }
 

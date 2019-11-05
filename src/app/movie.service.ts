@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class MovieService {
     
-    private url = 'http://localhost:5000/';
+    private url = 'http://35.208.68.153:5000/';
 
     constructor(private http: HttpClient) {}
 
