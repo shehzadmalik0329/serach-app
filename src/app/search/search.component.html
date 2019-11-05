@@ -34,7 +34,9 @@
                 <div class="column" *ngIf="movies?.length>0">
                         <h4 *ngIf="!showMore">No movie selected</h4>
                         <div *ngIf="showMore">
-                                <h4>{{ movie.title }}</h4>
+                                <h4>{{ movie.title }}
+                                        <img [src]="movie.poster_path" alt="{{movie.title}}" style="width:170px;height:170px;margin-left:15px;">
+                                </h4>
                                 <small>
                                         <cite>Released on - {{ movie.release_date}}, Rating {{ movie.vote_average }}</cite><br>
                                         <cite>Duration - {{ movie.runtime}} minutes, Popularity {{ movie.popularity }}</cite>

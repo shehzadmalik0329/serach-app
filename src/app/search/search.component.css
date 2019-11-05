@@ -12,7 +12,6 @@
     display: table;
     clear: both;
   }
-  .example-full-width {
-    width: 100%;
-    height: 300px;
+  img {
+    float: right;
   }
