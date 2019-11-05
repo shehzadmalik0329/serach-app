@@ -29,12 +29,14 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
+    this.showMore = false; 
     this.movieService.getMovieByName(this.searchText, this.enableML)
     .subscribe((data: {})=>{
       this.totalResults = data['num_results'];
       this.processingTime = data['processing_time'];
       this.movies = data['response'];
-    })  
+      
+    }); 
   }
 
   onShowMore(selectedMovie: any) {
